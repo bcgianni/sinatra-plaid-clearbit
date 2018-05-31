@@ -1,24 +1,27 @@
 require 'sinatra'
+require "sinatra/json"
 
 class ApiApp < Sinatra::Base
 
   before do
-    halt 200 if request.request_method == 'OPTIONS'
 
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'PATCH, POST, PUT, OPTIONS'
     headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Total-Count'
     headers['Access-Control-Expose-Headers'] = 'X-Total-Count'
 
-    content_type 'application/json'
-  end
-
-  after do
-    headers['X-Total-Count'] = "#{response.body[:data].count}"
+    halt 200 if request.request_method == 'OPTIONS'
   end
 
   get '/transactions' do
-    {data: []}
+
+    transactions = [
+      {id: 1}
+    ]
+
+    headers['X-Total-Count'] = "#{transactions.count}"
+
+    json transactions
   end
 
 
