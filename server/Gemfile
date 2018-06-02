@@ -2,5 +2,15 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem "tilt-jbuilder", ">= 0.4.0", :require => "sinatra/jbuilder"
 gem 'clearbit'
 gem 'plaid'
+
+
+group :development, :test do
+  gem 'pry'
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+end
