@@ -4,10 +4,9 @@ require 'date'
 require 'pry'
 
 class Transation
-
-  PLAID_CLIENT_ID = ENV['PLAID_CLIENT_ID'] || '****'
-  PLAID_CLIENT_SECRET = ENV['PLAID_CLIENT_SECRET'] || '****'
-  PLAID_PUBLIC_KEY = ENV['PLAID_PUBLIC_KEY'] || '****'
+  PLAID_CLIENT_ID = ENV['PLAID_CLIENT_ID'] || '5b11b99c16042e00112bd3b0'
+  PLAID_CLIENT_SECRET = ENV['PLAID_CLIENT_SECRET'] || '70e64f47f9d4ae295425c214e1df57'
+  PLAID_PUBLIC_KEY = ENV['PLAID_PUBLIC_KEY'] || 'e26cc54a3137878e3eec68b77bdbc1'
   PLAID_PUBLIC_TOKEN = ENV['PLAID_PUBLIC_TOKEN']
 
   # return an array of Product objects
@@ -30,6 +29,10 @@ class Transation
     transactions
   end
 
+  def self.access_token(token)
+    exchange_token_response = client.item.public_token.exchange(token)
+    access_token = exchange_token_response['access_token']
+  end
 
   def self.client
     client ||= Plaid::Client.new(env: :sandbox,
@@ -37,5 +40,4 @@ class Transation
                                  secret: PLAID_CLIENT_SECRET,
                                  public_key: PLAID_PUBLIC_KEY)
   end
-
 end

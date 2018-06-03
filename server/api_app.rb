@@ -2,10 +2,11 @@ require 'sinatra'
 require 'sinatra/jbuilder'
 require_relative 'models/transaction.rb'
 require_relative 'models/company.rb'
+require "./lib/api_helper"
 require 'pry'
 
-
 class ApiApp < Sinatra::Base
+  include ApiHelper
 
   before do
     headers['Access-Control-Allow-Origin'] = '*'
@@ -14,15 +15,14 @@ class ApiApp < Sinatra::Base
     headers['Access-Control-Expose-Headers'] = 'X-Total-Count'
 
     halt 200 if request.request_method == 'OPTIONS'
-
   end
 
   get '/transactions' do
-    token = request.env["HTTP_AUTHORIZATION"].split('Bearer ').last
+    token = request.env['HTTP_AUTHORIZATION'].split('Bearer ').last
 
     @transactions = Transation.all(token)
 
-    headers['X-Total-Count'] = "#{@transactions.count}"
+    headers['X-Total-Count'] = @transactions.count.to_s
 
     jbuilder :transactions
   end
@@ -32,14 +32,20 @@ class ApiApp < Sinatra::Base
     {}
   end
 
-
   get '/companies/:name' do
     @company = Company.find_by_name(params[:name])
     jbuilder :company
   end
 
-  get "/" do
-    status 200
+  post '/auth/token' do
+    with_checked_body(request.body) do |parsed_body|
+      @access_token = Transation.access_token(parsed_body["token"])
+    end
+
+    jbuilder :access_token
   end
 
+  get '/' do
+    status 200
+  end
 end
