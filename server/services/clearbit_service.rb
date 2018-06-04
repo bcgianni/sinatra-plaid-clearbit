@@ -6,7 +6,7 @@ require_relative 'cache_service.rb'
 module ClearbitService
   module Company
 
-    Clearbit.key = ENV['CLEARBIT_API_KEY'] || 'sk_8ea815cff9bf28d8e8491a010c138584'
+    Clearbit.key = ENV['CLEARBIT_API_KEY'] || '***'
 
     module_function
 
