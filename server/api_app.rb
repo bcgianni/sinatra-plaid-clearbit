@@ -40,7 +40,8 @@ class ApiApp < Sinatra::Base
       @access_token = PlaidService.generate_access_token(parsed_body['token'])
     end
 
-    jbuilder :access_token
+    jbuilder :access_token if @access_token
+    status 401
   end
 
   get '/' do

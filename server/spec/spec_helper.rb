@@ -1,6 +1,7 @@
 # spec/spec_helper.rb
 require 'rack/test'
 require 'rspec'
+require 'vcr'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -13,4 +14,11 @@ module RSpecMixin
   end
 end
 
-RSpec.configure { |c| c.include RSpecMixin }
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock
+end
+
+RSpec.configure do |c|
+  c.include RSpecMixin
+end
