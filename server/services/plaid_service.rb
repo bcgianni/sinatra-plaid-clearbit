@@ -27,11 +27,11 @@ module PlaidService
     module_function
 
     def fetch(access_token, start_date = Date.today, last_date = Date.today - MAX_NUMBER_DAYS)
-      fetch_cache(start_date, last_date) || fetch_plaid(access_token, start_date, last_date)
+      fetch_cache(access_token, start_date, last_date) || fetch_plaid(access_token, start_date, last_date)
     end
 
-    def fetch_cache(start_date, last_date)
-      CacheService::Plaid.get_cached_transactions_chunk(start_date, last_date)
+    def fetch_cache(access_token, start_date, last_date)
+      CacheService::Plaid.get_cached_transactions_chunk(access_token, start_date, last_date)
     end
 
     def fetch_plaid(access_token, start_date, last_date)
@@ -48,7 +48,7 @@ module PlaidService
         transactions += transaction_response.transactions
       end
 
-      CacheService::Plaid.set_transactions_chunk_cache(start_date, last_date, transactions)
+      CacheService::Plaid.set_transactions_chunk_cache(access_token, start_date, last_date, transactions)
 
       transactions
     end

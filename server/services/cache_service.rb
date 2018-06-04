@@ -50,12 +50,12 @@ module CacheService
   module Plaid
     module_function
 
-    def set_transactions_chunk_cache(start_date, last_date, transactions)
-      CacheService.set("plaid:transactions:#{start_date}:#{last_date}", transactions.to_json)
+    def set_transactions_chunk_cache(token, start_date, last_date, transactions)
+      CacheService.set("plaid:#{token}:transactions:#{start_date}:#{last_date}", transactions.to_json)
     end
 
-    def get_cached_transactions_chunk(start_date, last_date)
-      transactions_string = CacheService.get("plaid:transactions:#{start_date}:#{last_date}")
+    def get_cached_transactions_chunk(token, start_date, last_date)
+      transactions_string = CacheService.get("plaid:#{token}:transactions:#{start_date}:#{last_date}")
       JSON.parse(transactions_string) if transactions_string
     end
   end

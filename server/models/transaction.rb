@@ -22,7 +22,7 @@ class Transation
 
   # return an array of Product objects
   def self.all(token)
-    PlaidService::Transactions.fetch(token)[0..10].map do |transaction|
+    PlaidService::Transactions.fetch(token).map do |transaction|
       initialized_transaction = new(transaction)
       initialized_transaction.set_recurrency(token)
       initialized_transaction
