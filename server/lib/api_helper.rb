@@ -10,10 +10,4 @@ module ApiHelper
     end
     false
   end
-
-  def unauthorized(code, msg)
-    status code
-    error_response = { 'error' => msg }
-    json error_response
-  end
 end

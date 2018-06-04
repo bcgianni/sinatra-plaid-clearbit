@@ -38,10 +38,10 @@ class ApiApp < Sinatra::Base
   post '/auth/token' do
     with_checked_body(request.body) do |parsed_body|
       @access_token = PlaidService.generate_access_token(parsed_body['token'])
+      jbuilder :access_token
+    rescue Plaid::InvalidRequestError => error
+      status 401
     end
-
-    jbuilder :access_token if @access_token
-    status 401
   end
 
   get '/' do
