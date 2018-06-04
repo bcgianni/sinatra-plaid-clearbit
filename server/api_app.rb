@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'sinatra/jbuilder'
+require './lib/api_helper'
+require_relative 'services/plaid_service.rb'
 require_relative 'models/transaction.rb'
 require_relative 'models/company.rb'
-require "./lib/api_helper"
 require 'pry'
 
 class ApiApp < Sinatra::Base
@@ -21,25 +22,22 @@ class ApiApp < Sinatra::Base
     token = request.env['HTTP_AUTHORIZATION'].split('Bearer ').last
 
     @transactions = Transation.all(token)
-
     headers['X-Total-Count'] = @transactions.count.to_s
 
     jbuilder :transactions
   end
 
-  get '/recurrencies/:transaction_id' do
-    # get transaction's date and transactions of month before
-    {}
-  end
+  get '/companies' do
+    company_names = params[:id_like].split('|')
 
-  get '/companies/:name' do
-    @company = Company.find_by_name(params[:name])
-    jbuilder :company
+    @companies = Company.find_by_names(company_names)
+
+    jbuilder :companies
   end
 
   post '/auth/token' do
     with_checked_body(request.body) do |parsed_body|
-      @access_token = Transation.access_token(parsed_body["token"])
+      @access_token = PlaidService.generate_access_token(parsed_body['token'])
     end
 
     jbuilder :access_token

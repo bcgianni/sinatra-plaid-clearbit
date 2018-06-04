@@ -20,6 +20,8 @@ const dataProvider = jsonServerProvider(process.env.REACT_APP_SERVER_HOST, httpC
 const App = () => (
     <Admin dataProvider={dataProvider} loginPage={LoginPage} logoutButton={LogoutButton} authProvider={authProvider} >
         <Resource name="transactions" list={TransactionList} />
+        <Resource name="recurrency_check" />
+        <Resource name="companies" />
     </Admin>
 );
 

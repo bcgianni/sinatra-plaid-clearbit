@@ -1,22 +1,28 @@
 require 'sinatra/json'
-require 'clearbit'
 require 'pry'
+require 'securerandom'
+
+require './services/clearbit_service.rb'
 
 class Company
+  attr_reader :id, :summary, :legal_name, :logo
 
-  Clearbit.key = ENV['CLEARBIT_API_KEY'] || 'sk_8ea815cff9bf28d8e8491a010c138584'
+  def initialize(company_data = {})
+    @id = company_data[:id]
+    @uuid = company_data[:uuid] ? company_data[:uuid] : SecureRandom.uuid
+    @legal_name = company_data[:legal_name]
+    @logo = company_data[:logo]
+    @summary = company_data[:summary]
+  end
 
   def self.find_by_name(name)
-
-    response = Clearbit::NameDomain.find(name: name)
-    Clearbit::Enrichment::Company.find(domain: response[:domain], stream: false)
+    company_data = ClearbitService::Company.enrich_by_name(name)
+    new(company_data)
   end
 
-  def self.client
-    client ||= Plaid::Client.new(env: :sandbox,
-                                 client_id: PLAID_CLIENT_ID,
-                                 secret: PLAID_CLIENT_SECRET,
-                                 public_key: PLAID_PUBLIC_KEY)
+  def self.find_by_names(array_names)
+    companies = array_names.map do |name|
+      find_by_name(name)
+    end
   end
-
 end

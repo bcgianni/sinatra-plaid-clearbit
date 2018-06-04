@@ -46,6 +46,7 @@ GEM
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
+    redis (4.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -98,6 +99,7 @@ DEPENDENCIES
   plaid
   pry
   rack-test
+  redis
   rspec
   rubocop
   rubocop-rspec

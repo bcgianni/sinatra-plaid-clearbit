@@ -2,42 +2,52 @@ require 'sinatra/json'
 require 'plaid'
 require 'date'
 require 'pry'
+require './services/plaid_service.rb'
 
 class Transation
-  PLAID_CLIENT_ID = ENV['PLAID_CLIENT_ID'] || '5b11b99c16042e00112bd3b0'
-  PLAID_CLIENT_SECRET = ENV['PLAID_CLIENT_SECRET'] || '70e64f47f9d4ae295425c214e1df57'
-  PLAID_PUBLIC_KEY = ENV['PLAID_PUBLIC_KEY'] || 'e26cc54a3137878e3eec68b77bdbc1'
-  PLAID_PUBLIC_TOKEN = ENV['PLAID_PUBLIC_TOKEN']
+  attr_reader :id, :name, :amount, :iso_currency_code, :category_id,
+              :type, :date, :account_id, :recurring
+
+  def initialize(transaction_data = {})
+    @id = transaction_data['transaction_id']
+    @name = transaction_data['name']
+    @amount = transaction_data['amount']
+    @iso_currency_code = transaction_data['iso_currency_code']
+    @category_id = transaction_data['category_id']
+    @type = transaction_data['type']
+    @date = Date.parse(transaction_data['date'])
+    @account_id = transaction_data['account_id']
+    @recurring = false
+  end
 
   # return an array of Product objects
   def self.all(token)
-    now = Date.today
-    thirty_days_ago = (now - 30)
-    transaction_response = client.transactions.get(token, thirty_days_ago, now)
-    transactions = transaction_response.transactions
-
-    # the transactions in the response are paginated, so make multiple calls while
-    # increasing the offset to retrieve all transactions
-    while transactions.length < transaction_response['total_transactions']
-      transaction_response = client.transactions.get(access_token,
-                                                     thirty_days_ago,
-                                                     now,
-                                                     offset: transactions.length)
-      transactions += transaction_response.transactions
+    PlaidService::Transactions.fetch(token)[0..10].map do |transaction|
+      initialized_transaction = new(transaction)
+      initialized_transaction.set_recurrency(token)
+      initialized_transaction
     end
-
-    transactions
   end
 
-  def self.access_token(token)
-    exchange_token_response = client.item.public_token.exchange(token)
-    access_token = exchange_token_response['access_token']
+  def self.find(token, id)
+    all(token).select { |transaction| transaction.id == id }.first
   end
 
-  def self.client
-    client ||= Plaid::Client.new(env: :sandbox,
-                                 client_id: PLAID_CLIENT_ID,
-                                 secret: PLAID_CLIENT_SECRET,
-                                 public_key: PLAID_PUBLIC_KEY)
+  def self.find_by_ids(token, ids)
+    all(token).select { |transaction| ids.include?(transaction.id) }
+  end
+
+  def set_recurrency(token)
+    @recurring = is_recurrent?(token)
+  end
+
+  def is_recurrent?(token)
+    transactions = PlaidService::Transactions.fetch_by_dates_month(token, date.prev_month)
+    transactions += PlaidService::Transactions.fetch_by_dates_month(token, date.prev_month.prev_month)
+    recurring = transactions.select do |transaction|
+      transaction["name"] == name && transaction["account_id"] == account_id &&
+        transaction["amount"] == amount
+    end
+    recurring.count >= 2
   end
 end
