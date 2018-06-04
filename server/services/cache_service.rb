@@ -9,11 +9,12 @@ module CacheService
   module_function
 
   def get(key)
-    redis_client.get(key)
+    value = redis_client.get(key)
+    JSON.parse(value) if value
   end
 
   def set(key, value)
-    redis_client.set(key, value)
+    redis_client.set(key, value.to_json)
     expire(key)
   end
 
@@ -29,21 +30,19 @@ module CacheService
     module_function
 
     def set_domain_cache(name, response)
-      CacheService.set("clearbit:name:#{name}", response.to_json)
+      CacheService.set("clearbit:name:#{name}", response)
     end
 
     def get_cached_domain(name)
-      response_string = CacheService.get("clearbit:name:#{name}")
-      JSON.parse(response_string) if response_string
+      CacheService.get("clearbit:name:#{name}")
     end
 
     def set_company_info_cache(domain, info)
-      CacheService.set("clearbit:domain:#{domain}", info.to_json)
+      CacheService.set("clearbit:domain:#{domain}", info)
     end
 
     def get_cached_company_info(domain)
-      info_string = CacheService.get("clearbit:domain:#{domain}")
-      JSON.parse(info_string) if info_string
+      CacheService.get("clearbit:domain:#{domain}")
     end
   end
 
@@ -51,12 +50,11 @@ module CacheService
     module_function
 
     def set_transactions_chunk_cache(token, start_date, last_date, transactions)
-      CacheService.set("plaid:#{token}:transactions:#{start_date}:#{last_date}", transactions.to_json)
+      CacheService.set("plaid:#{token}:transactions:#{start_date}:#{last_date}", transactions)
     end
 
     def get_cached_transactions_chunk(token, start_date, last_date)
-      transactions_string = CacheService.get("plaid:#{token}:transactions:#{start_date}:#{last_date}")
-      JSON.parse(transactions_string) if transactions_string
+      CacheService.get("plaid:#{token}:transactions:#{start_date}:#{last_date}")
     end
   end
 end
