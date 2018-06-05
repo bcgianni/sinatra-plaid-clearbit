@@ -2,10 +2,9 @@ require File.expand_path '../spec_helper.rb', __dir__
 
 describe Transaction, :vcr do
   describe '#initialize' do
-
     it 'correctly creates the transaction object' do
-      @transaction = Transaction.new({
-        'id' => "1",
+      @transaction = Transaction.new(
+        'id' => '1',
         'name' => 'nome',
         'amount' => '10',
         'iso_currency_code' => 'R$',
@@ -14,14 +13,14 @@ describe Transaction, :vcr do
         'date' => '1999/12/12',
         'account_id' => '123',
         'recurring' => false
-      })
+      )
 
       expect(@transaction.name).to eq('nome')
-      expect(@transaction.amount).to eq("10")
-      expect(@transaction.iso_currency_code).to eq("R$")
-      expect(@transaction.category_id).to eq("123")
-      expect(@transaction.account_id).to eq("123")
-      expect(@transaction.type).to eq("private")
+      expect(@transaction.amount).to eq('10')
+      expect(@transaction.iso_currency_code).to eq('R$')
+      expect(@transaction.category_id).to eq('123')
+      expect(@transaction.account_id).to eq('123')
+      expect(@transaction.type).to eq('private')
     end
   end
 
@@ -30,7 +29,6 @@ describe Transaction, :vcr do
 
     it 'retrieves all transactions for the last 30 days' do
       VCR.use_cassette('transaction_model_all', record: :new_episodes) do
-
         @transactions = Transaction.all(access_token)
 
         expect(@transactions.count).to eq(16)
