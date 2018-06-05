@@ -22,6 +22,7 @@ yarn start
 Env vars for the frontend app:
 
 REACT_APP_PLAID_PUBLIC_KEY = Plaid public key to use Plaid link
+
 REACT_APP_SERVER_HOST = host address where the backend runs
 
 ### Backend
@@ -39,7 +40,9 @@ Env vars that need to be correctly configured:
 CLEARBIT_API_KEY = Clearbit's API Key
 
 PLAID_CLIENT_ID = Plaid integration client_id
+
 PLAID_CLIENT_SECRET = Plaid  integration secret
+
 PLAID_PUBLIC_KEY = Plaid integration public key
 
 REDIS_URL = Redis config url for caching the external requests
