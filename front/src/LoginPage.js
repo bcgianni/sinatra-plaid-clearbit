@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { userLogin } from 'react-admin';
 import PlaidLink from 'react-plaid-link';
+import Button from '@material-ui/core/Button';
 
 class LoginPage extends Component {
   handleOnSuccess = (token, metadata) => {
@@ -9,9 +10,9 @@ class LoginPage extends Component {
     console.log(this.props);
     this.props.userLogin({token, metadata});
   }
-  handleOnExit = () => {
-    // handle the case when your user exits Link
-  }
+  
+  handleOnExit = () => {}
+
   render() {
     return (
       <div>
@@ -23,7 +24,9 @@ class LoginPage extends Component {
           publicKey={process.env.REACT_APP_PLAID_PUBLIC_KEY}
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}>
-          Open Link and connect your bank!
+          <Button variant="contained" color="primary">
+            Open Link and connect your bank!
+          </Button>
         </PlaidLink>
       </div>
     )

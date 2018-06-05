@@ -3,7 +3,6 @@ import { fetchUtils, Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { TransactionList } from './transactions';
 import LoginPage from './LoginPage';
-import LogoutButton from './LogoutButton';
 import authProvider from './authProvider'
 
 
@@ -18,7 +17,7 @@ const httpClient = (url, options = {}) => {
 const dataProvider = jsonServerProvider(process.env.REACT_APP_SERVER_HOST, httpClient);
 
 const App = () => (
-    <Admin dataProvider={dataProvider} loginPage={LoginPage} logoutButton={LogoutButton} authProvider={authProvider} >
+    <Admin title="Sinatra Plaid Clearbit APP" dataProvider={dataProvider} loginPage={LoginPage} authProvider={authProvider} >
         <Resource name="transactions" list={TransactionList} />
         <Resource name="recurrency_check" />
         <Resource name="companies" />
