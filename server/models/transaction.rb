@@ -20,7 +20,7 @@ class Transaction
     @recurring = false
   end
 
-  # return an array of Product objects
+
   def self.all(token)
     PlaidService::Transactions.fetch(token).map do |transaction|
       initialized_transaction = new(transaction)
