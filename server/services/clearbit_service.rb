@@ -6,7 +6,7 @@ require_relative 'cache_service.rb'
 module ClearbitService
   module Company
 
-    Clearbit.key = ENV['CLEARBIT_API_KEY'] || '***'
+    Clearbit.key = ENV['CLEARBIT_API_KEY'] || '**********'
 
     module_function
 
@@ -15,7 +15,7 @@ module ClearbitService
     end
 
     def clearbit_company_object(name)
-      domain = get_domain_by_name(name.split(" ").first) # Get first name to improve accuracy
+      domain = get_domain_by_name(name) # Get first name to improve accuracy
       return nil_company(name) unless domain
       clbit_info = get_company_info_by_domain(domain)
       {
@@ -23,7 +23,9 @@ module ClearbitService
         "uuid": clbit_info["id"],
         "logo": clbit_info["logo"],
         "legal_name": clbit_info["legalName"],
-        "summary": summarize(clbit_info)
+        "description": clbit_info["description"],
+        "phone": clbit_info["phone"],
+        "type": clbit_info["type"]
       }
     end
 
@@ -66,13 +68,10 @@ module ClearbitService
         "id": name,
         "legal_name": name,
         "logo": nil,
-        "summary": nil
+        "description": nil,
+        "phone": nil,
+        "type": nil
       }
-    end
-
-    def summarize(clbit_info)
-      # Use inspect until I have a better idea
-      clbit_info.inspect
     end
 
   end

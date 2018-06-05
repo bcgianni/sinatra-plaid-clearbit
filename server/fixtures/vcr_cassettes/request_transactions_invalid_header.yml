@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://sandbox.plaid.com/item/public_token/exchange
+    uri: https://sandbox.plaid.com/transactions/get
     body:
       encoding: UTF-8
-      string: '{"public_token":"AAAAAAA","client_id":"5b11b99c16042e00112bd3b0","secret":"70e64f47f9d4ae295425c214e1df57"}'
+      string: '{"access_token":"access-sandbox-AAAA","start_date":"2018-05-05","end_date":"2018-06-04","options":{},"client_id":"5b11b99c16042e00112bd3b0","secret":"70e64f47f9d4ae295425c214e1df57"}'
     headers:
       User-Agent:
       - Plaid Ruby v6.0.0
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 05 Jun 2018 01:32:18 GMT
+      - Tue, 05 Jun 2018 02:20:10 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -39,11 +39,11 @@ http_interactions:
       string: |-
         {
           "display_message": null,
-          "error_code": "INVALID_PUBLIC_TOKEN",
-          "error_message": "provided public token is in an invalid format. expected format: public-\u003cenvironment\u003e-\u003cidentifier\u003e",
+          "error_code": "INVALID_ACCESS_TOKEN",
+          "error_message": "provided access token is in an invalid format. expected format: access-\u003cenvironment\u003e-\u003cidentifier\u003e",
           "error_type": "INVALID_INPUT",
-          "request_id": "jxJ1V"
+          "request_id": "ESqOd"
         }
     http_version: 
-  recorded_at: Tue, 05 Jun 2018 01:32:18 GMT
+  recorded_at: Tue, 05 Jun 2018 02:20:10 GMT
 recorded_with: VCR 4.0.0

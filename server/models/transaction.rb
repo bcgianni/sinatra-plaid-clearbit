@@ -4,7 +4,7 @@ require 'date'
 require 'pry'
 require './services/plaid_service.rb'
 
-class Transation
+class Transaction
   attr_reader :id, :name, :amount, :iso_currency_code, :category_id,
               :type, :date, :account_id, :recurring
 
@@ -45,8 +45,8 @@ class Transation
     transactions = PlaidService::Transactions.fetch_by_dates_month(token, date.prev_month)
     transactions += PlaidService::Transactions.fetch_by_dates_month(token, date.prev_month.prev_month)
     recurring = transactions.select do |transaction|
-      transaction["name"] == name && transaction["account_id"] == account_id &&
-        transaction["amount"] == amount
+      transaction['name'] == name && transaction['account_id'] == account_id &&
+        transaction['amount'] == amount
     end
     recurring.count >= 2
   end

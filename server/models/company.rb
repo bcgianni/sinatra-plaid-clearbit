@@ -5,14 +5,18 @@ require 'securerandom'
 require './services/clearbit_service.rb'
 
 class Company
-  attr_reader :id, :summary, :legal_name, :logo
+  attr_reader :id, :description, :legal_name, :logo, :phone, :type,
+              :estimated_annual_revenue, :uuid
 
   def initialize(company_data = {})
     @id = company_data[:id]
     @uuid = company_data[:uuid] ? company_data[:uuid] : SecureRandom.uuid
     @legal_name = company_data[:legal_name]
     @logo = company_data[:logo]
-    @summary = company_data[:summary]
+    @description = company_data[:description]
+    @phone = company_data[:phone]
+    @type = company_data[:type]
+    @estimated_annual_revenue = company_data[:estimated_annual_revenue]
   end
 
   def self.find_by_name(name)

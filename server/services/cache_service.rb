@@ -4,7 +4,7 @@ require 'json'
 
 module CacheService
   CACHING_TIME_IN_SECONDS = 3600
-  REDIS_URL = ENV['REDIS_URL'] || 'redis://localhost:32771'
+  REDIS_URL = ENV['REDIS_URL'] || 'redis://localhost:32772'
 
   module_function
 

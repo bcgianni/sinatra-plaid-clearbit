@@ -21,10 +21,12 @@ class ApiApp < Sinatra::Base
   get '/transactions' do
     token = request.env['HTTP_AUTHORIZATION'].split('Bearer ').last
 
-    @transactions = Transation.all(token)
+    @transactions = Transaction.all(token)
     headers['X-Total-Count'] = @transactions.count.to_s
 
     jbuilder :transactions
+  rescue StandardError => error
+    status 401
   end
 
   get '/companies' do
@@ -38,10 +40,11 @@ class ApiApp < Sinatra::Base
   post '/auth/token' do
     with_checked_body(request.body) do |parsed_body|
       @access_token = PlaidService.generate_access_token(parsed_body['token'])
-      jbuilder :access_token
-    rescue Plaid::InvalidRequestError => error
+    rescue Plaid::InvalidInputError => invalid_input_error
       status 401
     end
+
+    jbuilder :access_token
   end
 
   get '/' do

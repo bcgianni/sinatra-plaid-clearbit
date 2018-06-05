@@ -3,9 +3,9 @@ require 'pry'
 require_relative 'cache_service.rb'
 
 module PlaidService
-  PLAID_CLIENT_ID = ENV['PLAID_CLIENT_ID'] || '***'
-  PLAID_CLIENT_SECRET = ENV['PLAID_CLIENT_SECRET'] || '***'
-  PLAID_PUBLIC_KEY = ENV['PLAID_PUBLIC_KEY'] || '***'
+  PLAID_CLIENT_ID = ENV['PLAID_CLIENT_ID'] || '*************'
+  PLAID_CLIENT_SECRET = ENV['PLAID_CLIENT_SECRET'] || '***********'
+  PLAID_PUBLIC_KEY = ENV['PLAID_PUBLIC_KEY'] || '***********'
 
   module_function
 
@@ -38,8 +38,9 @@ module PlaidService
       transaction_response = client.transactions.get(access_token, last_date, start_date)
       transactions = transaction_response.transactions
 
-      # the transactions in the response are paginated, so make multiple calls while
-      # increasing the offset to retrieve all transactions
+      # Got this from plaid ruby quickstart:
+      # "the transactions in the response are paginated, so make multiple calls while
+      # increasing the offset to retrieve all transactions"
       while transactions.length < transaction_response['total_transactions']
         transaction_response = client.transactions.get(access_token,
                                                        last_date,

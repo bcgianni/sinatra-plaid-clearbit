@@ -1,0 +1,311 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://company.clearbit.com/v1/domains/find?name=Uber
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer sk_8ea815cff9bf28d8e8491a010c138584
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jun 2018 02:34:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '95'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, must-revalidate, max-age=2592000
+      Vary:
+      - Accept-Encoding
+      X-Account-Id:
+      - 4784f7cf-8237-459d-9cd9-39800adad1f6
+      Server:
+      - envoy
+      X-Envoy-Upstream-Service-Time:
+      - '239'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "name": "Uber",
+          "domain": "uber.com",
+          "logo": "https://logo.clearbit.com/uber.com"
+        }
+    http_version: 
+  recorded_at: Tue, 05 Jun 2018 02:34:39 GMT
+- request:
+    method: get
+    uri: https://company.clearbit.com/v2/companies/find?domain=uber.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer sk_8ea815cff9bf28d8e8491a010c138584
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jun 2018 02:34:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1444'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Account-Id:
+      - 4784f7cf-8237-459d-9cd9-39800adad1f6
+      X-Api-Version:
+      - '2017-09-12'
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Remaining:
+      - '599'
+      X-Ratelimit-Reset:
+      - '1528166139'
+      Server:
+      - envoy
+      X-Envoy-Upstream-Service-Time:
+      - '270'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICIzZjVkNmE0ZS1jMjg0LTRmNzgtYmZkZi03NjY5YjQ1YWY5MDciLAogICJuYW1lIjogIlViZXIiLAogICJsZWdhbE5hbWUiOiAiVWJlciBUZWNobm9sb2dpZXMgSW5jLiIsCiAgImRvbWFpbiI6ICJ1YmVyLmNvbSIsCiAgImRvbWFpbkFsaWFzZXMiOiBbCiAgICAiZHJpdmV1YmVyLmhrIiwKICAgICJwYXJjZWlyb3Nyai5jb20iLAogICAgInViZXJueWNtYXJrZXRwbGFjZS5jb20iLAogICAgInViZXJjYWxpLmNvIiwKICAgICJ1YmVyZG9taW5pY2FuYS5jb20iLAogICAgInViZXIuaWQiLAogICAgImFubm9uY2VzLXViZXIuZnIiLAogICAgInViZXJlY3BhcnRuZXJzLmNvbSIsCiAgICAic29jaW9zcHVlYmxhLmNvbSIsCiAgICAidWJlci1pbmZvLnBsIiwKICAgICJ1YmVyY2FiLmNvbSIsCiAgICAidWJlcmRyaXZlcnByby5jby51ayIsCiAgICAiZHJpdmV1YmVyc2QuY29tIiwKICAgICJzb2Npb3Nxcm9teC5jb20iLAogICAgInViZXJvbmUuZXMiLAogICAgInViZXJhdGxwYXJ0bmVycy5jb20iLAogICAgInVici50byIsCiAgICAiZHJpdmV1a2kuY29tIiwKICAgICJwYXJjZWlyb3NzcC5jb20iLAogICAgInViZXJjb211bmljYWRvcy5jb20iLAogICAgImNoYXVmZmV1ci11YmVyLmJlIgogIF0sCiAgInNpdGUiOiB7CiAgICAicGhvbmVOdW1iZXJzIjogWwogICAgICAiKzEgODAwLTc3OC03ODc5IgogICAgXSwKICAgICJlbWFpbEFkZHJlc3NlcyI6IFsKICAgICAgImNoYW5nZS1kckB1YmVyLmNvbSIKICAgIF0KICB9LAogICJjYXRlZ29yeSI6IHsKICAgICJzZWN0b3IiOiAiSW5kdXN0cmlhbHMiLAogICAgImluZHVzdHJ5R3JvdXAiOiAiVHJhbnNwb3J0YXRpb24iLAogICAgImluZHVzdHJ5IjogIlRyYW5zcG9ydGF0aW9uIiwKICAgICJzdWJJbmR1c3RyeSI6ICJUcmFuc3BvcnRhdGlvbiIsCiAgICAic2ljQ29kZSI6ICI4NyIsCiAgICAibmFpY3NDb2RlIjogIjUxIgogIH0sCiAgInRhZ3MiOiBbCiAgICAiVHJhbnNwb3J0YXRpb24iLAogICAgIk1vYmlsZSIsCiAgICAiQjJDIiwKICAgICJNYXJrZXRwbGFjZSIsCiAgICAiVGVjaG5vbG9neSIsCiAgICAiSW50ZXJuZXQiCiAgXSwKICAiZGVzY3JpcHRpb24iOiAiR2V0IGEgcmlkZSBpbiBtaW51dGVzLiBPciBiZWNvbWUgYSBkcml2ZXItcGFydG5lciBhbmQgZWFybiBtb25leSBvbiB5b3VyIHNjaGVkdWxlLiBVYmVyIGlzIGZpbmRpbmcgeW91IGJldHRlciB3YXlzIHRvIG1vdmUsIHdvcmssIGFuZCBnZXQgYWhlYWQuIiwKICAiZm91bmRlZFllYXIiOiAyMDA5LAogICJsb2NhdGlvbiI6ICIxNDU1IE1hcmtldCBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgOTQxMDMsIFVTQSIsCiAgInRpbWVab25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiLAogICJ1dGNPZmZzZXQiOiAtNywKICAiZ2VvIjogewogICAgInN0cmVldE51bWJlciI6ICIxNDU1IiwKICAgICJzdHJlZXROYW1lIjogIk1hcmtldCBTdHJlZXQiLAogICAgInN1YlByZW1pc2UiOiBudWxsLAogICAgImNpdHkiOiAiU2FuIEZyYW5jaXNjbyIsCiAgICAicG9zdGFsQ29kZSI6ICI5NDEwMyIsCiAgICAic3RhdGUiOiAiQ2FsaWZvcm5pYSIsCiAgICAic3RhdGVDb2RlIjogIkNBIiwKICAgICJjb3VudHJ5IjogIlVuaXRlZCBTdGF0ZXMiLAogICAgImNvdW50cnlDb2RlIjogIlVTIiwKICAgICJsYXQiOiAzNy43NzU3OTE0LAogICAgImxuZyI6IC0xMjIuNDE4MDUyOQogIH0sCiAgImxvZ28iOiAiaHR0cHM6Ly9sb2dvLmNsZWFyYml0LmNvbS91YmVyLmNvbSIsCiAgImZhY2Vib29rIjogewogICAgImhhbmRsZSI6ICJ1YmVyIiwKICAgICJsaWtlcyI6IDEzNzkzNzQ3CiAgfSwKICAibGlua2VkaW4iOiB7CiAgICAiaGFuZGxlIjogImNvbXBhbnkvdWJlci1jb20iCiAgfSwKICAidHdpdHRlciI6IHsKICAgICJoYW5kbGUiOiAiVWJlciIsCiAgICAiaWQiOiAiMTkxMDM0ODEiLAogICAgImJpbyI6ICJXZeKAmXJlIG1vdmluZyBmb3J3YXJkIHdpdGggbmV3IGxlYWRlcnNoaXAsIGEgbmV3IHZpc2lvbiwgYW5kIG5ldyBjb21taXRtZW50cyB0byB5b3XigJRvdXIgcmlkZXJzIGFuZCBkcml2ZXItcGFydG5lcnMuIFF1ZXN0aW9ucyBvciBjb21tZW50PyBUd2VldCBhdCBAVWJlcl9TdXBwb3J0LiIsCiAgICAiZm9sbG93ZXJzIjogOTE0OTc1LAogICAgImZvbGxvd2luZyI6IDM3OCwKICAgICJsb2NhdGlvbiI6ICJHbG9iYWwiLAogICAgInNpdGUiOiAiaHR0cHM6Ly90LmNvL3VSaFc2RlF5QXciLAogICAgImF2YXRhciI6ICJodHRwczovL3Bicy50d2ltZy5jb20vcHJvZmlsZV9pbWFnZXMvODM5NzExMDQzMDU2MTMyMDk3LzJGOERaZWVCX25vcm1hbC5qcGciCiAgfSwKICAiY3J1bmNoYmFzZSI6IHsKICAgICJoYW5kbGUiOiAib3JnYW5pemF0aW9uL3ViZXIiCiAgfSwKICAiZW1haWxQcm92aWRlciI6IGZhbHNlLAogICJ0eXBlIjogInByaXZhdGUiLAogICJ0aWNrZXIiOiBudWxsLAogICJpZGVudGlmaWVycyI6IHsKICAgICJ1c0VJTiI6ICI0NTI2NDc0NDEiCiAgfSwKICAicGhvbmUiOiAiKzEgNDE1LTk4Ni0yMTA0IiwKICAibWV0cmljcyI6IHsKICAgICJhbGV4YVVzUmFuayI6IDY2MCwKICAgICJhbGV4YUdsb2JhbFJhbmsiOiAxMjI3LAogICAgImVtcGxveWVlcyI6IDQ4NzEwLAogICAgImVtcGxveWVlc1JhbmdlIjogIjEwSy01MEsiLAogICAgIm1hcmtldENhcCI6IG51bGwsCiAgICAicmFpc2VkIjogNTkwMDAwMDAwMCwKICAgICJhbm51YWxSZXZlbnVlIjogNjUwMDAwMDAwMCwKICAgICJlc3RpbWF0ZWRBbm51YWxSZXZlbnVlIjogIiQxQi0kMTBCIiwKICAgICJmaXNjYWxZZWFyRW5kIjogMTIKICB9LAogICJpbmRleGVkQXQiOiAiMjAxOC0wNi0wMVQwNDoxOTowNC43MzlaIiwKICAidGVjaCI6IFsKICAgICJvcHRpbWl6ZWx5IiwKICAgICJhbmRyb2lkIiwKICAgICJuZ2lueCIsCiAgICAiZ29vZ2xlX2FwcHMiLAogICAgImlvcyIsCiAgICAiYW1hem9uX3MzIiwKICAgICJ0ZWFsaXVtIiwKICAgICJzZWdtZW50IiwKICAgICJob3RqYXIiLAogICAgImdvb2dsZV90YWdfbWFuYWdlciIsCiAgICAiZmFjZWJvb2tfYWR2ZXJ0aXNlciIsCiAgICAiZ29vZ2xlX2FuYWx5dGljcyIKICBdLAogICJwYXJlbnQiOiB7CiAgICAiZG9tYWluIjogbnVsbAogIH0KfQ==
+    http_version: 
+  recorded_at: Tue, 05 Jun 2018 02:34:39 GMT
+- request:
+    method: get
+    uri: https://company.clearbit.com/v1/domains/find?name=KFC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer sk_8ea815cff9bf28d8e8491a010c138584
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jun 2018 02:34:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '94'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, must-revalidate, max-age=2592000
+      Vary:
+      - Accept-Encoding
+      X-Account-Id:
+      - 4784f7cf-8237-459d-9cd9-39800adad1f6
+      Server:
+      - envoy
+      X-Envoy-Upstream-Service-Time:
+      - '252'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "name": "KFC",
+          "domain": "kfc.com",
+          "logo": "https://logo.clearbit.com/kfc.com"
+        }
+    http_version: 
+  recorded_at: Tue, 05 Jun 2018 02:34:40 GMT
+- request:
+    method: get
+    uri: https://company.clearbit.com/v2/companies/find?domain=kfc.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer sk_8ea815cff9bf28d8e8491a010c138584
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jun 2018 02:34:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1221'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Account-Id:
+      - 4784f7cf-8237-459d-9cd9-39800adad1f6
+      X-Api-Version:
+      - '2017-09-12'
+      X-Ratelimit-Limit:
+      - '600'
+      X-Ratelimit-Remaining:
+      - '598'
+      X-Ratelimit-Reset:
+      - '1528166139'
+      Server:
+      - envoy
+      X-Envoy-Upstream-Service-Time:
+      - '216'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "d3068f29-e78c-406a-9b3d-19c582f208a8",
+          "name": "KFC",
+          "legalName": "KFC Corp.",
+          "domain": "kfc.com",
+          "domainAliases": [
+
+          ],
+          "site": {
+            "phoneNumbers": [
+
+            ],
+            "emailAddresses": [
+              "copyright@kfc.com",
+              "letstalk@kfc.com"
+            ]
+          },
+          "category": {
+            "sector": "Consumer Discretionary",
+            "industryGroup": "Consumer Services",
+            "industry": "Hotels, Restaurants & Leisure",
+            "subIndustry": "Restaurants",
+            "sicCode": "54",
+            "naicsCode": "72"
+          },
+          "tags": [
+            "Restaurants",
+            "Food",
+            "Beverages",
+            "Internet",
+            "B2C",
+            "Technology"
+          ],
+          "description": "The official Internet headquarters of Kentucky Fried Chicken and its founder, Colonel Sanders",
+          "foundedYear": 1890,
+          "location": "1441 Gardiner Ln, Louisville, KY 40213, USA",
+          "timeZone": "America/New_York",
+          "utcOffset": -4,
+          "geo": {
+            "streetNumber": "1441",
+            "streetName": "Gardiner Lane",
+            "subPremise": null,
+            "city": "Louisville",
+            "postalCode": "40213",
+            "state": "Kentucky",
+            "stateCode": "KY",
+            "country": "United States",
+            "countryCode": "US",
+            "lat": 38.1981365,
+            "lng": -85.69574899999999
+          },
+          "logo": "https://logo.clearbit.com/kfc.com",
+          "facebook": {
+            "handle": "kfc",
+            "likes": 47134261
+          },
+          "linkedin": {
+            "handle": "company/kfc"
+          },
+          "twitter": {
+            "handle": "kfc",
+            "id": "15392391",
+            "bio": "Kentucky Fried Chicken. Founded by The Colonel. Practitioners of The Hard Way. Purveyors of the World's Best Chicken.",
+            "followers": 1293979,
+            "following": 11,
+            "location": "Louisville, KY, USA",
+            "site": "https://t.co/sBnZvBPVdt",
+            "avatar": "https://pbs.twimg.com/profile_images/987302203567161344/qFiS_9Ux_normal.jpg"
+          },
+          "crunchbase": {
+            "handle": "organization/kfc"
+          },
+          "emailProvider": false,
+          "type": "private",
+          "ticker": null,
+          "identifiers": {
+            "usEIN": null
+          },
+          "phone": null,
+          "metrics": {
+            "alexaUsRank": 9211,
+            "alexaGlobalRank": 41936,
+            "employees": 24000,
+            "employeesRange": "10K-50K",
+            "marketCap": null,
+            "raised": null,
+            "annualRevenue": 23000000000,
+            "estimatedAnnualRevenue": "$10B+",
+            "fiscalYearEnd": null
+          },
+          "indexedAt": "2018-06-01T04:11:36.131Z",
+          "tech": [
+            "bing_advertiser",
+            "facebook_connect",
+            "ruby_on_rails",
+            "double_click_advertiser",
+            "google_maps",
+            "nginx",
+            "double_click",
+            "outlook",
+            "akamai_dns",
+            "google_adwords",
+            "google_analytics",
+            "microsoft_exchange_online"
+          ],
+          "parent": {
+            "domain": "pepsico.com"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 05 Jun 2018 02:34:40 GMT
+recorded_with: VCR 4.0.0
